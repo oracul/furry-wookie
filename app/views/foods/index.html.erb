@@ -1,25 +1,24 @@
-<h1>Listing foods</h1>
+<div class="page-header">
+<h1>All of the Statuses</h1>
+</div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+    <%= link_to "Post a New Status", new_food_path, class: "btn btn-success" %>
 
 <% @foods.each do |food| %>
-  <tr>
-    <td><%= food.name %></td>
-    <td><%= food.content %></td>
-    <td><%= link_to 'Show', food %></td>
-    <td><%= link_to 'Edit', edit_food_path(food) %></td>
-    <td><%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+<div class="status">
+<strong><%= food.name %></strong>
+<p><%= food.content %></p>
+    <div class="meta">
+      <%= link_to time_ago_in_words(food.created_at) + " ago", food %> 
+   
+    <span class="admin">
+      | <%= link_to "Edit", edit_food_path(food) %> |
+      <%= link_to "Delete", food, method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+    </span>
+     </div>
+</div>
+
 <% end %>
-</table>
+</div>
 
-<br />
-
-<%= link_to 'New Food', new_food_path %>
